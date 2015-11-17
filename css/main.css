@@ -28,7 +28,7 @@ body {
 
 header {
     width: 100%;
-    height: 100px;
+    height: 75px;
     position: fixed;
     background-color: #FFF;
 }
@@ -184,6 +184,7 @@ h2.filter_inner_title {
     width: auto;
     display: inline-block;
     line-height: 30px;
+    margin-right: 2.5px;
     border: 1px solid #089058;
     background-color: #1cf87e;
     color: #089058;
