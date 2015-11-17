@@ -23,7 +23,8 @@ body {
     color: #FFF;
     background-color: #EEE;
     font-family: 'Open Sans', Arial, sans-serif;
-    font-weight: 300;    
+    font-weight: 300;
+    overflow-x: hidden;
 }
 
 header {
@@ -215,4 +216,23 @@ h3.arrow {
     border: 1px solid #a20d0d;
     background-color: #f64343;
     color: #a20d0d;
+}
+
+@media (max-width: 800px) {        
+    .suggestion {
+        width: 75%;
+    }
+    input#loc_search {
+        width: 80%;
+    }
+    #suggestion_loc_search {
+        width: 75%;
+    }    
+    .active_filter_container {
+        border-left: 0;
+        border-right: 0;
+    }
+    .filter_div {
+        width: 80%;
+    }
 }
