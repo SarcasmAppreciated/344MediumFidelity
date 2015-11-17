@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     $(".arrow").click(function(){
         $(this).parent(".filter_div").toggleClass("active_filter_div");
         $(this).parents(".filter_container").toggleClass("active_filter_container");
@@ -8,12 +8,12 @@ $(document).ready(function(){
         if(currText == ">")
         {
             $(this).parents(".filter_container").children(".active_takeover").fadeIn(600).css("display", "inline-block");
-            $("span").css("display", "inline-block");
+            $(this).parents(".filter_container").children("span").css("display", "inline-block");
             $(this).text("^");
         }            
         else {
             $(this).parents(".filter_container").children(".active_takeover").fadeOut(0);
-            $("span").css("display", "inline");
+            $(this).parents(".filter_container").children("span").css("display", "inline");
             $(this).text(">");
         }
     });
