@@ -50,6 +50,11 @@ h3 {
     font-size: 21px;
 }
 
+span {
+    width: 100%;
+    height: 10px;
+}
+
 .container {
     width: 100%;
     height: auto;
@@ -131,12 +136,6 @@ input#loc_search {
 
 #suggestion_loc_search {
     width: 590px;
-}
-
-span {
-    width: 100%;
-    height: 10px;
-    display: inline-block;
 }
 
 .filter_div {
