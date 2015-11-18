@@ -123,7 +123,9 @@ $(document).ready(function(){
     function appendFilter(filter_id, id) {
         $(".filter_div#" + filter_id).append("<div class='filter' id=" + id + "><h3 class='filter_X'>X</h3><h3 class='filter_name'>" + id + "</h3></div>");        
         $(".filter").click(function(){
-            $(this).fadeOut(600);        
+			var i = currentFilters.indexOf(id);
+			currentFilters.splice(i, 1);
+            $(this).fadeOut(600);
         });
     }
 });
