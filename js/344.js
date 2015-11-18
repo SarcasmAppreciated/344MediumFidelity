@@ -65,7 +65,7 @@ $(document).ready(function(){
         var isMatch = attemptMatch(enterVal);
         if((isMatch == "location") && !checkCurrentFilters(enterVal))
             fadeSuggestion(id, enterVal, isMatch);
-    }
+    }    
     
     function fadeSuggestion(id, enterVal, isMatch){
         $("#suggestion_" + id +".suggestion").empty().fadeIn(600, function(){
@@ -107,7 +107,9 @@ $(document).ready(function(){
     } 
 	
 	function checkCurrentFilters(input) {
-		if(currentFilters.indexOf(input) != -1)
+		if(currentFilters.indexOf(input) == -1)
+			alert("Not in Array");
+			alert(currentFilters[0]);
 			return false;
 		else
 			return true;
