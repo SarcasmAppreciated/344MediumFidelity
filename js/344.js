@@ -107,7 +107,9 @@ $(document).ready(function(){
     } 
 	
 	function checkCurrentFilters(input) {
-		if(currentFilters.indexOf(input) != -1)
+		if(currentFilters.indexOf(input) == -1)
+			alert("Not in Array");
+			alert(currentFilters[0]);
 			return false;
 		else
 			return true;
