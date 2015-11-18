@@ -41,7 +41,7 @@ $(document).ready(function(){
         var id = "search_bar";
         var enterVal = document.getElementById(id).value;
         var isMatch = attemptMatch(enterVal);
-		if (!attemptMatch(enterVal))
+		if (!checkCurrentFilters(enterVal))
 			fadeSuggestion(id, enterVal, isMatch);
     }
     
@@ -63,7 +63,7 @@ $(document).ready(function(){
         var id = "loc_search";
         var enterVal = document.getElementById(id).value;
         var isMatch = attemptMatch(enterVal);
-        if((isMatch == "location") && !attemptMatch(enterVal))
+        if((isMatch == "location") && !checkCurrentFilters(enterVal))
             fadeSuggestion(id, enterVal, isMatch);
     }    
     
@@ -104,7 +104,7 @@ $(document).ready(function(){
                 result = -1;
         }
         return result;
-    }
+    } 
 	
 	function checkCurrentFilters(input) {
 		if(currentFilters.indexOf(input) != -1)
