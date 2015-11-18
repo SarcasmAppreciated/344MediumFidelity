@@ -1,5 +1,7 @@
 $(document).ready(function(){
-
+	var currentFilters = [];
+	
+	
     $(".arrow").click(function(){
         $(this).parent(".filter_div").toggleClass("active_filter_div");
         $(this).parents(".filter_container").toggleClass("active_filter_container");
@@ -39,7 +41,8 @@ $(document).ready(function(){
         var id = "search_bar";
         var enterVal = document.getElementById(id).value;
         var isMatch = attemptMatch(enterVal);
-        fadeSuggestion(id, enterVal, isMatch);
+		if (!attemptMatch(enterVal))
+			fadeSuggestion(id, enterVal, isMatch);
     }
     
     //location
@@ -60,7 +63,7 @@ $(document).ready(function(){
         var id = "loc_search";
         var enterVal = document.getElementById(id).value;
         var isMatch = attemptMatch(enterVal);
-        if(isMatch == "location")
+        if((isMatch == "location") && !attemptMatch(enterVal))
             fadeSuggestion(id, enterVal, isMatch);
     }    
     
@@ -87,18 +90,28 @@ $(document).ready(function(){
         switch (input) {
             case "Chinese":
                 result = "food";
+				currentFilters.push(input);
                 break;
             case "Alcohol":
                 result = "food";
+				currentFilters.push(input);
                 break;
             case "Kitsilano":
                 result = "location";
+				currentFilters.push(input);
                 break;
             default:
                 result = -1;
         }
         return result;
     }
+	
+	function checkCurrentFilters(input) {
+		if(currentFilters.indexOf(input) != -1)
+			return false;
+		else
+			return true;
+	}
     
     function appendFilter(filter_id, id) {
         $(".filter_div#" + filter_id).append("<div class='filter' id=" + id + "><h3 class='filter_X'>X</h3><h3 class='filter_name'>" + id + "</h3></div>");        
