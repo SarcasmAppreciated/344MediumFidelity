@@ -218,7 +218,10 @@ h3.arrow {
     color: #a20d0d;
 }
 
-@media (max-width: 800px) {        
+@media (max-width: 800px) {
+	#search_div {
+		margin-top: 20px;
+	}
     .suggestion {
         width: 75%;
     }
