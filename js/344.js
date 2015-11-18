@@ -40,9 +40,11 @@ $(document).ready(function(){
     function doneTyping() {
         var id = "search_bar";
         var enterVal = document.getElementById(id).value;
-        var isMatch = attemptMatch(enterVal);
-		if (!checkCurrentFilters(enterVal))
+        var isMatch;
+		if (!checkCurrentFilters(enterVal)) {
+			isMatch = attemptMatch(enterVal);
 			fadeSuggestion(id, enterVal, isMatch);
+		}
     }
     
     //location
@@ -63,8 +65,12 @@ $(document).ready(function(){
         var id = "loc_search";
         var enterVal = document.getElementById(id).value;
         var isMatch = attemptMatch(enterVal);
-        if((isMatch == "location") && !checkCurrentFilters(enterVal))
-            fadeSuggestion(id, enterVal, isMatch);
+		var isMatch;
+		if (!checkCurrentFilters(enterVal)) {
+			isMatch = attemptMatch(enterVal);
+			if(isMatch == "location")
+				fadeSuggestion(id, enterVal, isMatch);
+		}
     }    
     
     function fadeSuggestion(id, enterVal, isMatch){
