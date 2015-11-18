@@ -113,11 +113,7 @@ $(document).ready(function(){
     } 
 	
 	function checkCurrentFilters(input) {
-		alert(currentFilters[0]);
 		if(currentFilters.indexOf(input) == -1) {
-			alert(currentFilters[0]);
-			alert(currentFilters[1]);
-			alert("Not in Array");
 			return false;
 		}		
 		else
