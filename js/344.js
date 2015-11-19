@@ -64,7 +64,6 @@ $(document).ready(function(){
     function doneTyping_loc() {
         var id = "loc_search";
         var enterVal = document.getElementById(id).value;
-        var isMatch = attemptMatch(enterVal);
 		var isMatch;
 		if (!checkCurrentFilters(enterVal)) {
 			isMatch = attemptMatch(enterVal);
