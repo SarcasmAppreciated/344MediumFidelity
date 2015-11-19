@@ -64,14 +64,13 @@ $(document).ready(function(){
     function doneTyping_loc() {
         var id = "loc_search";
         var enterVal = document.getElementById(id).value;
-        var isMatch = attemptMatch(enterVal);
 		var isMatch;
 		if (!checkCurrentFilters(enterVal)) {
 			isMatch = attemptMatch(enterVal);
 			if(isMatch == "location")
 				fadeSuggestion(id, enterVal, isMatch);
 		}
-    }    
+    }
     
     function fadeSuggestion(id, enterVal, isMatch){
         $("#suggestion_" + id +".suggestion").empty().fadeIn(600, function(){
