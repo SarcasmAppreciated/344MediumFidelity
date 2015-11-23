@@ -316,4 +316,10 @@ h3.arrow {
         width: 100%;
         overflow-x: scroll;
     }
+    #results_sort {
+        width: 800px;
+    }
+    .result_container {
+        width: 800px;
+    }
 }
