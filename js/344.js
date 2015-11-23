@@ -88,7 +88,7 @@ $(document).ready(function(){
             }
         }).css("display","inline-block");
     }
-  
+    
     function attemptMatch(input){
         var result = -1;
         switch (input.toUpperCase()) {
