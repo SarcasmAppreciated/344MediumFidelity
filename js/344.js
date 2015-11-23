@@ -19,7 +19,7 @@ $(document).ready(function(){
         }
     });
     
-    //setup before functions
+    //setup before functions - thanks SO for key listener code
     var typingTimer;                //timer identifier
     var doneTypingInterval = 1000;  //time in ms, 5 second for example
     var $input = $("#search_bar");
@@ -91,20 +91,24 @@ $(document).ready(function(){
     
     function attemptMatch(input){
         var result = -1;
-        switch (input) {
-            case "Japanese":
+        switch (input.toUpperCase()) {
+            case "JAPANESE":
                 result = "food";
 				currentFilters.push(input);
                 break;
-            case "Chinese":
+            case "CHINESE":
                 result = "food";
 				currentFilters.push(input);
                 break;
-            case "Alcohol":
+            case "ALCOHOL":
                 result = "food";
 				currentFilters.push(input);
                 break;
-            case "Kitsilano":
+            case "KITSILANO":
+                result = "location";
+				currentFilters.push(input);
+                break;
+            case "HERE":
                 result = "location";
 				currentFilters.push(input);
                 break;
@@ -131,20 +135,22 @@ $(document).ready(function(){
         });
     }
     
-    var results_arr = {"restaurants":[
-    {"name": "Golden Ocean", "rating": 3.7, "distance": 5, "price": 2, "tags":["Chinese", "Full-service", "Alcohol", "Dim-Sum"]},
-    {"name": "Hitoe Sushi", "rating": 4.1, "distance": 2, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
-    {"name": "Sun Sushi", "rating": 4.6, "distance": 2, "price": 1, "tags":["Japanese", "Alcohol"]},
-    {"name": "Hime Sushi", "rating": 4.0, "distance": 2, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
-    {"name": "Takumi Japanese Restaurant", "rating": -1, "distance": 2, "price": 4, "tags":["Japanese", "Full-service", "Alcohol"]},
-    {"name": "Everday Sushi", "rating": 3.8, "distance": 2, "price": 2, "tags":["Japanese"]},
-    {"name": "Omio Japan", "rating": -1, "distance": 1, "price": 2, "tags":["Japanese"]},
+    var results_arr = [
     {"name": "One More Sushi", "rating": 3.9, "distance": 1, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
-    {"name": "Suika", "rating": 4.3, "distance": 4, "price": 3, "tags":["Japanese", "Full-service", "Alcohol", "Izakaya"]}
-    ]};
-    appendResults();
-    function appendResults() {
-        $.each(results_arr.restaurants, function(index, e) {
+    {"name": "Omio Japan", "rating": -1, "distance": 1, "price": 2, "tags":["Japanese"]},
+    {"name": "Sun Sushi", "rating": 4.6, "distance": 2, "price": 1, "tags":["Japanese", "Alcohol"]},
+    {"name": "Hitoe Sushi", "rating": 4.1, "distance": 2, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
+    {"name": "Hime Sushi", "rating": 4.0, "distance": 2, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
+    {"name": "Everday Sushi", "rating": 3.8, "distance": 2, "price": 2, "tags":["Japanese"]},
+    {"name": "Takumi Japanese Restaurant", "rating": -1, "distance": 2, "price": 4, "tags":["Japanese", "Full-service", "Alcohol"]},
+    {"name": "Suika", "rating": 4.3, "distance": 4, "price": 3, "tags":["Japanese", "Full-service", "Alcohol", "Izakaya"]},
+    {"name": "Golden Ocean", "rating": 3.7, "distance": 5, "price": 2, "tags":["Chinese", "Full-service", "Alcohol", "Dim-Sum"]}
+    ];
+    
+    appendResults(results_arr);
+    function appendResults(arr) {
+        $("#results").find(".result_container").remove();
+        $.each(arr, function(index, e) {
             var dollarSigns = "";
             for(var i = 0; i < Number(e.price); i++)
                 dollarSigns += "$";
@@ -162,5 +168,48 @@ $(document).ready(function(){
             $("#results").append("<div class='result_container'><h3 class='result_text couture name'>" + e.name + "</h3><h3 class='result_text'>" + ratingCheck + "</h3>"
             + "<h3 class='result_text'>" + e.distance + " km</h3><h3 class='result_text price'>" + dollarSigns +"</h3><h3 class='result_text tags'>" + tags + "</h3></div>");
         });           
+    }
+    
+    var ratingAsc = true;
+    var distanceAsc = false;
+    var priceAsc = true;
+    $("#distance_sort").children(".down_arrow").fadeIn("fast").css("display", "inline-block");
+    
+    
+    $("#rating_sort").click(function(){
+        sortResults("rating", ratingAsc);
+        ratingAsc = !ratingAsc;
+        toggleArrow($(this), ratingAsc);
+    });    
+    $("#distance_sort").click(function(){
+        sortResults("distance", distanceAsc);
+        distanceAsc = !distanceAsc;
+        toggleArrow($(this), distanceAsc);
+    });    
+    $("#price_sort").click(function(){
+        sortResults("price", priceAsc);
+        priceAsc = !priceAsc;
+        toggleArrow($(this), priceAsc);
+    });
+    
+    function toggleArrow($input, directionBool) {
+        if($input.children(".down_arrow").css("display") == "none") {
+            $(".down_arrow").fadeOut("fast", function(){
+                $input.children(".down_arrow").fadeIn("fast").css("display", "inline-block");                
+            });            
+        }
+        if(directionBool)
+            $(".down_arrow").addClass("up_arrow");
+        else
+            $(".down_arrow").removeClass("up_arrow");
+    }
+    
+    // Thank you to StackOverflow for this code
+    function sortResults(prop, asc) {
+        results_arr = results_arr.sort(function(a, b) {
+            if (asc) return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+            else return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        });
+        appendResults(results_arr);
     }
 });
