@@ -311,6 +311,7 @@ h3.arrow {
     }
     .filter_div {
         width: 80%;
+        height: auto;
     }
     #results {
         width: 100%;
