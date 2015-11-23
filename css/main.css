@@ -312,4 +312,8 @@ h3.arrow {
     .filter_div {
         width: 80%;
     }
+    #results {
+        width: 100%;
+        overflow-x: scroll;
+    }
 }
