@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	var currentFilters = [];
+    var appliedFilters = [];
 		
     $(".arrow").click(function(){
         $(this).parent(".filter_div").toggleClass("active_filter_div");
@@ -78,6 +79,7 @@ $(document).ready(function(){
                 $(this).click(function(){
                     if(enterVal != null) { 
                         appendFilter(isMatch, enterVal);
+                        filterResults();
                         $(this).fadeOut(600);
                     }
                     enterVal = null;
@@ -95,14 +97,17 @@ $(document).ready(function(){
             case "JAPANESE":
                 result = "food";
 				currentFilters.push(input);
+                appliedFilters.push(input);
                 break;
             case "CHINESE":
                 result = "food";
 				currentFilters.push(input);
+                appliedFilters.push(input);
                 break;
             case "ALCOHOL":
                 result = "food";
 				currentFilters.push(input);
+                appliedFilters.push(input);
                 break;
             case "KITSILANO":
                 result = "location";
@@ -130,12 +135,15 @@ $(document).ready(function(){
         $(".filter_div#" + filter_id).append("<div class='filter' id=" + id + "><h3 class='filter_X'>X</h3><h3 class='filter_name'>" + id + "</h3></div>");        
         $(".filter").click(function(){
 			var i = currentFilters.indexOf(id);
-			currentFilters.splice(i, 1);
+            var j = appliedFilters.indexOf(id);
+			currentFilters.splice(i, 1);            
+            appliedFilters.splice(j, 1);
             $(this).fadeOut(600);
+            filterResults();
         });
     }
     
-    var results_arr = [
+    var original_arr = [
     {"name": "One More Sushi", "rating": 3.9, "distance": 1, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
     {"name": "Omio Japan", "rating": -1, "distance": 1, "price": 2, "tags":["Japanese"]},
     {"name": "Sun Sushi", "rating": 4.6, "distance": 2, "price": 1, "tags":["Japanese", "Alcohol"]},
@@ -145,9 +153,25 @@ $(document).ready(function(){
     {"name": "Takumi Japanese Restaurant", "rating": -1, "distance": 2, "price": 4, "tags":["Japanese", "Full-service", "Alcohol"]},
     {"name": "Suika", "rating": 4.3, "distance": 4, "price": 3, "tags":["Japanese", "Full-service", "Alcohol", "Izakaya"]},
     {"name": "Golden Ocean", "rating": 3.7, "distance": 5, "price": 2, "tags":["Chinese", "Full-service", "Alcohol", "Dim-Sum"]}
-    ];
+    ];    
+    appendResults(original_arr);
+    var curr_arr = original_arr;
     
-    appendResults(results_arr);
+    function filterResults() {
+        curr_arr = original_arr.filter(doesContainTag);
+        sortResults(mostRecentProp, mostRecentAsc);
+    }
+    
+    function doesContainTag(input){
+        var ret = true;
+        for(var i = 0; i < appliedFilters.length; i++) {
+            if(JSON.stringify(input).indexOf(appliedFilters[i]) == -1)
+                ret = false;
+        }
+        return ret;
+    }
+
+    
     function appendResults(arr) {
         $("#results").find(".result_container").remove();
         $.each(arr, function(index, e) {
@@ -174,23 +198,32 @@ $(document).ready(function(){
     var distanceAsc = false;
     var priceAsc = true;
     $("#distance_sort").children(".down_arrow").fadeIn("fast").css("display", "inline-block");
-    
+    var mostRecentProp = "distance";
+    var mostRecentAsc = distanceAsc;
     
     $("#rating_sort").click(function(){
         sortResults("rating", ratingAsc);
+        setRecent("rating", ratingAsc);
         ratingAsc = !ratingAsc;
         toggleArrow($(this), ratingAsc);
     });    
     $("#distance_sort").click(function(){
         sortResults("distance", distanceAsc);
+        setRecent("distance", distanceAsc);
         distanceAsc = !distanceAsc;
         toggleArrow($(this), distanceAsc);
     });    
     $("#price_sort").click(function(){
         sortResults("price", priceAsc);
+        setRecent("price", priceAsc);
         priceAsc = !priceAsc;
         toggleArrow($(this), priceAsc);
     });
+    
+    function setRecent(prop, asc) {
+        mostRecentProp = prop;
+        mostRecentAsc = asc;
+    }
     
     function toggleArrow($input, directionBool) {
         if($input.children(".down_arrow").css("display") == "none") {
@@ -206,10 +239,10 @@ $(document).ready(function(){
     
     // Thank you to StackOverflow for this code
     function sortResults(prop, asc) {
-        results_arr = results_arr.sort(function(a, b) {
+        curr_arr = curr_arr.sort(function(a, b) {
             if (asc) return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
             else return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
         });
-        appendResults(results_arr);
+        appendResults(curr_arr);
     }
 });
