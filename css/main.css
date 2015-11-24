@@ -56,6 +56,10 @@ span {
     height: 10px;
 }
 
+.mobile_only {
+    display: none;
+}
+
 .container {
     width: 100%;
     height: auto;
@@ -322,5 +326,8 @@ h3.arrow {
     }
     .result_container {
         width: 800px;
+    }
+    .mobile_only {
+        display: inline-block;
     }
 }
