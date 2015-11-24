@@ -29,7 +29,13 @@
             </div>
             <div id="filters">
                 <h2 style="margin-bottom: 20px;">Currently applied criteria:</h2>
-                <div class ="filter_container">
+                <div class ="filter_container" id="foo">
+                    <div class="filter_div active_takeover">
+                        <h2 class="filter_inner_title">What do you want to eat?</h2>
+                        <input class="sub_search" id="foo_search" placeholder="Chinese, French, Japanese..."></input>
+                        <div class="suggestion sub_suggestion" id="suggestion_foo_search"></div>
+                    </div>
+                    <span></span>
                     <div class="filter_div" id="food">
                         <h2 class="filter_title">Cuisine:</h2>
                         <h3 class="arrow">></h3>
@@ -38,8 +44,8 @@
                 <div class ="filter_container" id="loc">
                     <div class="filter_div active_takeover">
                         <h2 class="filter_inner_title">Where do you want to eat?</h2>
-                        <input id="loc_search" placeholder="Address, neighbourhood..."></input>
-                        <div class="suggestion" id="suggestion_loc_search"></div>
+                        <input class="sub_search" id="loc_search" placeholder="Address, neighbourhood..."></input>
+                        <div class="suggestion sub_suggestion" id="suggestion_loc_search"></div>
                     </div>
                     <span></span>
                     <div class="filter_div" id="location">
@@ -47,13 +53,27 @@
                         <h3 class="arrow">></h3>
                     </div>
                 </div>
-                <div class ="filter_container">
+                <div class ="filter_container" id="tim">
+                    <div class="filter_div active_takeover">
+                        <h2 class="filter_inner_title">When do you want to eat?</h2>
+                        <input class="sub_search" id="tim_search" placeholder="Now, in 5 minutes, 5:30PM... "></input>
+                        <div class="suggestion sub_suggestion" id="suggestion_tim_search"></div>
+                    </div>
+                    <span></span>
                     <div class="filter_div" id="time">
                         <h2 class="filter_title">Time:</h2>
                         <h3 class="arrow">></h3>
                     </div>
                 </div>
-                <div class ="filter_container">
+                <div class ="filter_container" id="pri">
+                    <div class="filter_div active_takeover">
+                        <h2 class="filter_inner_title">How much do you want to spend?</h2>
+                        <div class="price_button">$</div>
+                        <div class="price_button">$$</div>
+                        <div class="price_button">$$$</div>
+                        <div class="price_button">$$$$</div>
+                    </div>
+                    <span></span>
                     <div class="filter_div" id="price">
                         <h2 class="filter_title">Price:</h2>
                         <h3 class="arrow">></h3>

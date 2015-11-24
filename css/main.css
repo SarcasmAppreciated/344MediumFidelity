@@ -125,11 +125,27 @@ input#search_bar {
     border: 1px solid #083290;
 }
 
-#loc.active_filter_container {
-    background: url(../images/location.jpg) center no-repeat;
+#foo.active_filter_container {
+    background: url(../images/food.jpg) center no-repeat;
+    background-size: cover;
 }
 
-input#loc_search {
+#loc.active_filter_container {
+    background: url(../images/location.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#tim.active_filter_container {
+    background: url(../images/time.jpg) center no-repeat;
+    background-size: cover;
+}
+
+#pri.active_filter_container {
+    background: url(../images/price.jpg) center no-repeat;
+    background-size: cover;
+}
+
+input.sub_search {
     width: 600px;
     height: 30px;
     display: inline-block;
@@ -139,7 +155,7 @@ input#loc_search {
     border: none;
 }
 
-#suggestion_loc_search {
+.sub_suggestion{
     width: 590px;
 }
 
@@ -182,6 +198,24 @@ h2.filter_inner_title {
     font-size: 30px;
     font-style: normal;
     color: #333;
+}
+
+.price_button {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #3f91e4;
+    line-height: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.price_button.active_button {
+    background-color: #083290;
+    color: #3f91e4;
 }
 
 .filter {
@@ -303,10 +337,10 @@ h3.arrow {
     .suggestion {
         width: 75%;
     }
-    input#loc_search {
+    input.sub_search {
         width: 80%;
     }
-    #suggestion_loc_search {
+    .sub_suggestion {
         width: 75%;
     }    
     .active_filter_container {
