@@ -124,7 +124,7 @@ $(document).ready(function(){
     } 
 	
 	function checkCurrentFilters(input) {
-		if(currentFilters.indexOf(input) == -1) {
+		if(JSON.stringify(currentFilters).toUpperCase().indexOf(input.toUpperCase()) == -1) {
 			return false;
 		}		
 		else
@@ -170,7 +170,6 @@ $(document).ready(function(){
         }
         return ret;
     }
-
     
     function appendResults(arr) {
         $("#results").find(".result_container").remove();
