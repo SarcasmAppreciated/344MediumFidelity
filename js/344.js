@@ -70,7 +70,61 @@ $(document).ready(function(){
 			if(isMatch == "location")
 				fadeSuggestion(id, enterVal, isMatch);
 		}
-    }    
+    }
+
+    //food
+    var typingTimer_foo;                //timer identifier
+    var doneTypingInterval_foo = 1000;  //time in ms, 5 second for example
+    var $input_foo = $("#foo_search");
+    
+    $input_foo.on('keyup', function () {
+        clearTimeout(typingTimer_foo);
+        typingTimer_foo = setTimeout(doneTyping_foo, doneTypingInterval_foo);
+    });
+
+    $input_foo.on('keydown', function () {
+        clearTimeout(typingTimer_foo);
+    });
+    
+    function doneTyping_foo() {
+        var id = "foo_search";
+        var enterVal = document.getElementById(id).value;
+		var isMatch;
+		if (!checkCurrentFilters(enterVal)) {
+			isMatch = attemptMatch(enterVal);
+			if(isMatch == "food")
+				fadeSuggestion(id, enterVal, isMatch);
+		}
+    }
+
+    //time
+    var typingTimer_tim;                //timer identifier
+    var doneTypingInterval_tim = 1000;  //time in ms, 5 second for example
+    var $input_tim = $("#tim_search");
+    
+    $input_tim.on('keyup', function () {
+        clearTimeout(typingTimer_tim);
+        typingTimer_tim = setTimeout(doneTyping_tim, doneTypingInterval_tim);
+    });
+
+    $input_tim.on('keydown', function () {
+        clearTimeout(typingTimer_tim);
+    });
+    
+    function doneTyping_tim() {
+        var id = "tim_search";
+        var enterVal = document.getElementById(id).value;
+		var isMatch;
+		if (!checkCurrentFilters(enterVal)) {
+			isMatch = attemptMatch(enterVal);
+			if(isMatch == "time")
+				fadeSuggestion(id, enterVal, isMatch);
+		}
+    }
+    
+    $(".price_button").click(function(){
+        $(this).toggleClass("active_button");
+    });
     
     function fadeSuggestion(id, enterVal, isMatch){
         $("#suggestion_" + id +".suggestion").empty().fadeIn(600, function(){
@@ -90,11 +144,16 @@ $(document).ready(function(){
             }
         }).css("display","inline-block");
     }
-    
+
     function attemptMatch(input){
         var result = -1;
         switch (input.toUpperCase()) {
             case "JAPANESE":
+                result = "food";
+				currentFilters.push(input);
+                appliedFilters.push(input);
+                break;
+            case "FRENCH":
                 result = "food";
 				currentFilters.push(input);
                 appliedFilters.push(input);
@@ -115,6 +174,14 @@ $(document).ready(function(){
                 break;
             case "HERE":
                 result = "location";
+				currentFilters.push(input);
+                break;
+            case "5:30PM":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "NOW":
+                result = "time";
 				currentFilters.push(input);
                 break;
             default:
