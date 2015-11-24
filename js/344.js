@@ -165,7 +165,7 @@ $(document).ready(function(){
     function doesContainTag(input){
         var ret = true;
         for(var i = 0; i < appliedFilters.length; i++) {
-            if(JSON.stringify(input).indexOf(appliedFilters[i]) == -1)
+            if(JSON.stringify(input).toUpperCase().indexOf(appliedFilters[i].toUpperCase()) == -1)
                 ret = false;
         }
         return ret;
