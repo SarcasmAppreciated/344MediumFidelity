@@ -172,11 +172,27 @@ $(document).ready(function(){
                 result = "location";
 				currentFilters.push(input);
                 break;
+			case "GRANVILLE":
+                result = "location";
+				currentFilters.push(input);
+                break;
             case "HERE":
                 result = "location";
 				currentFilters.push(input);
                 break;
             case "5:30PM":
+                result = "time";
+				currentFilters.push(input);
+                break;
+			case "FRIDAY":
+                result = "time";
+				currentFilters.push(input);
+                break;
+			case "DECEMBER 18TH":
+                result = "time";
+				currentFilters.push(input);
+                break;
+			case "DEC 18":
                 result = "time";
 				currentFilters.push(input);
                 break;
@@ -219,6 +235,7 @@ $(document).ready(function(){
     {"name": "Everday Sushi", "rating": 3.8, "distance": 2, "price": 2, "tags":["Japanese"]},
     {"name": "Takumi Japanese Restaurant", "rating": -1, "distance": 2, "price": 4, "tags":["Japanese", "Full-service", "Alcohol"]},
     {"name": "Suika", "rating": 4.3, "distance": 4, "price": 3, "tags":["Japanese", "Full-service", "Alcohol", "Izakaya"]},
+	{"name": "Salade de Fruits Cafe", "rating": 4.5, "distance": 1, "price": 3, "tags":["French", "Full-service", "Alcohol", "Izakaya"]},
     {"name": "Golden Ocean", "rating": 3.7, "distance": 5, "price": 2, "tags":["Chinese", "Full-service", "Alcohol", "Dim-Sum"]}
     ];    
     appendResults(original_arr);
