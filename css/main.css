@@ -312,6 +312,8 @@ h3.arrow {
 	height: 40px;
 	display: inline-block;
 	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 	line-height: 40px;
 	border-radius: 5px;
 	background-color: #BBB;
@@ -381,4 +383,7 @@ h3.arrow {
     .mobile_only {
         display: inline-block;
     }
+	.menu_bar {
+		text-align: left;
+	}	
 }
