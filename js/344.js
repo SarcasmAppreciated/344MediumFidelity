@@ -131,10 +131,6 @@ $(document).ready(function(){
 		}
     }
     
-    $(".price_button").click(function(){
-        $(this).toggleClass("active_button");
-    });
-    
     function fadeSuggestion(id, enterVal, isMatch){
         $("#suggestion_" + id +".suggestion").empty().fadeIn(600, function(){
             if(isMatch != -1) {                
@@ -147,9 +143,24 @@ $(document).ready(function(){
                     }
                     enterVal = null;
                 });
+                $(this).prev("input").keyup(function(event){
+                    if(event.keyCode == 13){
+                        appendFilter(isMatch, enterVal);
+                        filterResults();
+                        $(this).next(".suggestion").fadeOut(600);
+                    }
+                });
             }
             else{
                 $(this).append("<h3>Could not find a match :(</h3>");
+                $(this).click(function(){
+                    $(this).fadeOut(600);
+                });
+                $(this).prev("input").keyup(function(event){
+                    if(event.keyCode == 13){
+                        $(this).next(".suggestion").fadeOut(600);
+                    }
+                });
             }
         }).css("display","inline-block");
     }
@@ -193,6 +204,10 @@ $(document).ready(function(){
                 result = "location";
 				currentFilters.push(input);
                 break;
+            case "GRANVILLE AND BROADWAY":
+                result = "location";
+				currentFilters.push(input);
+                break;
 			case "GRANVILLE ST AND BROADWAY":
                 result = "location";
 				currentFilters.push(input);
@@ -213,6 +228,38 @@ $(document).ready(function(){
                 result = "time";
 				currentFilters.push(input);
                 break;
+            case "IN 5 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN 10 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN 15 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN 20 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN 30 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN 45 MINUTES":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "IN AN HOUR":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "FRIDAY, DECEMBER 18th, 2015":
+                result = "time";
+				currentFilters.push(input);
+                break;    
 			case "FRIDAY":
                 result = "time";
 				currentFilters.push(input);
@@ -254,6 +301,17 @@ $(document).ready(function(){
             filterResults();
         });
     }
+    
+    $(".price_button").click(function(){
+        $(this).toggleClass("active_button");        
+        var pNum = $(this).text().length;
+        if(appliedFilters.indexOf("PRICE\":" + pNum + "") == -1)
+            appliedFilters.push("PRICE\":" + pNum + "");
+        else {
+            appliedFilters.splice(appliedFilters.indexOf("PRICE\":" + pNum + ""), 1);          
+        }
+        filterResults();
+    });
     
     var original_arr = [
     {"name": "One More Sushi", "rating": 3.9, "distance": 1, "price": 3, "tags":["Japanese", "Full-service", "Alcohol"]},
