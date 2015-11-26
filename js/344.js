@@ -69,6 +69,9 @@ $(document).ready(function(){
 			isMatch = attemptMatch(enterVal);
 			if(isMatch == "location")
 				fadeSuggestion(id, enterVal, isMatch);
+			else {
+				fadeSuggestion(id, enterVal, -1);
+			}
 		}
     }
 
@@ -94,6 +97,9 @@ $(document).ready(function(){
 			isMatch = attemptMatch(enterVal);
 			if(isMatch == "food")
 				fadeSuggestion(id, enterVal, isMatch);
+			else {
+				fadeSuggestion(id, enterVal, -1);
+			}
 		}
     }
 
@@ -119,6 +125,9 @@ $(document).ready(function(){
 			isMatch = attemptMatch(enterVal);
 			if(isMatch == "time")
 				fadeSuggestion(id, enterVal, isMatch);
+			else {
+				fadeSuggestion(id, enterVal, -1);
+			}
 		}
     }
     
@@ -173,6 +182,26 @@ $(document).ready(function(){
 				currentFilters.push(input);
                 break;
 			case "GRANVILLE":
+                result = "location";
+				currentFilters.push(input);
+                break;
+			case "GRANVILLE ST":
+                result = "location";
+				currentFilters.push(input);
+                break;
+			case "GRANVILLE ST.":
+                result = "location";
+				currentFilters.push(input);
+                break;
+			case "GRANVILLE ST AND BROADWAY":
+                result = "location";
+				currentFilters.push(input);
+                break;
+			case "GRANVILLE ST. AND BROADWAY":
+                result = "location";
+				currentFilters.push(input);
+                break;
+			case "BROADWAY":
                 result = "location";
 				currentFilters.push(input);
                 break;
@@ -273,9 +302,28 @@ $(document).ready(function(){
             tags = tags.replace(/\,/g,", ");
         
             $("#results").append("<div class='result_container'><h3 class='result_text couture name'>" + e.name + "</h3><h3 class='result_text'>" + ratingCheck + "</h3>"
-            + "<h3 class='result_text'>" + e.distance + " km</h3><h3 class='result_text price'>" + dollarSigns +"</h3><h3 class='result_text tags'>" + tags + "</h3></div>");
+            + "<h3 class='result_text'>" + e.distance + " km</h3><h3 class='result_text price'>" + dollarSigns +"</h3><h3 class='result_text tags'>" + tags + "</h3>"
+			+ "<div class='menu_bar'><div class='menu_button'>Menu</div></div>"		
+			+ "</div>");
         });           
     }
+	
+	
+	$(".result_container").click(function(){
+		menuCheck($(this));		
+	});
+	function menuCheck($target) {
+		if($target.height() == 50)
+			$target.css("height", "100px").find(".menu_bar").fadeIn("slow").css("display", "inline-block");
+		else {
+			$target.find(".menu_bar").fadeOut("slow", function(){
+				$target.css("height", "50px");
+			});
+		}			
+	}
+	$(".menu_button").click(function(){
+		alert("End of the tasks! Thanks for participating!");	
+	});
     
     var ratingAsc = true;
     var distanceAsc = false;
