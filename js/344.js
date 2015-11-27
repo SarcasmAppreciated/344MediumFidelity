@@ -135,21 +135,15 @@ $(document).ready(function(){
         $("#suggestion_" + id +".suggestion").empty().fadeIn(600, function(){
             if(isMatch != -1) {                
                 $(this).append("<h3>Did you mean </h3><h3 style='font-weight: 500'>" + enterVal + "</h3><h3>?</h3>");
-                $(this).click(function(){
-                    if(enterVal != null) { 
-                        appendFilter(isMatch, enterVal);
-                        filterResults();
-                        $(this).fadeOut(600);
-                    }
-                    enterVal = null;
-                });
                 $(this).prev("input").keyup(function(event){
                     if(event.keyCode == 13){
-                        appendFilter(isMatch, enterVal);
-                        filterResults();
-                        $(this).next(".suggestion").fadeOut(600);
+                        enterVal = takeSuggestion(enterVal, isMatch, $(this).next(".suggestion"));
                     }
                 });
+                $(this).click(function() { 
+                    enterVal = takeSuggestion(enterVal, isMatch, $(this));
+                });
+                
             }
             else{
                 $(this).append("<h3>Could not find a match :(</h3>");
@@ -163,6 +157,15 @@ $(document).ready(function(){
                 });
             }
         }).css("display","inline-block");
+    }
+    
+    function takeSuggestion(enterVal, isMatch, $target) {
+        if((enterVal != null)) {
+            appendFilter(isMatch, enterVal);
+            filterResults();
+            $target.fadeOut(600);
+        }
+        return null;
     }
 
     function attemptMatch(input){
