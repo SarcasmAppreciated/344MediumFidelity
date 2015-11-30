@@ -366,25 +366,35 @@ $(document).ready(function(){
             + "<h3 class='result_text'>" + e.distance + " km</h3><h3 class='result_text price'>" + dollarSigns +"</h3><h3 class='result_text tags'>" + tags + "</h3>"
 			+ "<div class='menu_bar'><div class='menu_button'>Menu</div></div>"		
 			+ "</div>");
+            registerContainer();
         });           
     }
 	
+	registerContainer();
+    function registerContainer() {
+        $(".result_container").unbind().click(function(){
+            menuCheck($(this));		
+        });
+    }
 	
-	$(".result_container").click(function(){
-		menuCheck($(this));		
-	});
 	function menuCheck($target) {
-		if($target.height() == 50)
-			$target.css("height", "100px").find(".menu_bar").fadeIn("slow").css("display", "inline-block");
+		if($target.height() == 50) {
+            $target.css("height", "100px").find(".menu_bar").fadeIn("slow").css("display", "inline-block");  
+        }
 		else {
 			$target.find(".menu_bar").fadeOut("slow", function(){
 				$target.css("height", "50px");
 			});
-		}			
+		}
+		menuButtonCheck();	
 	}
-	$(".menu_button").click(function(){
-		alert("End of the tasks! Thanks for participating!");	
-	});
+	
+    menuButtonCheck();
+    function menuButtonCheck () {
+        $(".menu_button").click(function(){
+            alert("End of the tasks! Thanks for participating!");	
+        });        
+    }
     
     var ratingAsc = true;
     var distanceAsc = false;
