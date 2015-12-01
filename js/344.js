@@ -391,7 +391,7 @@ $(document).ready(function(){
 	
     menuButtonCheck();
     function menuButtonCheck () {
-        $(".menu_button").click(function(){
+        $(".menu_button").unbind().click(function(){
             alert("End of the tasks! Thanks for participating!");	
         });        
     }
