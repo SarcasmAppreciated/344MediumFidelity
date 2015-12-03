@@ -259,6 +259,14 @@ $(document).ready(function(){
                 result = "time";
 				currentFilters.push(input);
                 break;
+            case "DECEMBER 18":
+                result = "time";
+				currentFilters.push(input);
+                break;
+            case "DECEMBER":
+                result = "time";
+				currentFilters.push(input);
+                break; 
             case "FRIDAY, DECEMBER 18th, 2015":
                 result = "time";
 				currentFilters.push(input);
