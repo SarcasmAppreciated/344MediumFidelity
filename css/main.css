@@ -68,7 +68,7 @@ span {
 #search_container {
     width: 100%;
     height: auto;
-    background-color: #c41200;
+    background-color: #c74350;
 }
 
 #search_div {
@@ -110,7 +110,7 @@ input#search_bar {
 }
 
 #filters {
-    background-color: #c41200;
+    background-color: #c74350;
 }
 
 .filter_container {
@@ -207,7 +207,7 @@ h2.filter_inner_title {
     margin-top: 25px;
     margin-left: 5px;
     margin-right: 5px;
-    background-color: #c41200;
+    background-color: #c74350;
     line-height: 50px;
     border-radius: 5px;
     cursor: pointer;
@@ -215,7 +215,7 @@ h2.filter_inner_title {
 
 .price_button.active_button {
     background-color: #3b0500;
-    color: #c41200;
+    color: #c74350;
 }
 
 .filter {
@@ -246,7 +246,7 @@ h3.arrow {
     float: right;
     text-align: center;
     background-color: #3b0500;
-    color: #c41200;
+    color: #c74350;
     cursor: pointer;
 }
 
@@ -273,7 +273,7 @@ h3.arrow {
     height: 50px;
     float: left;
     margin-top: 2.5px;
-    background-color: #c41200;
+    background-color: #c74350;
     text-align: center;
     cursor: pointer;
 }
@@ -341,13 +341,13 @@ h3.arrow {
 	height: 0; 
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid #c41200;
+	border-top: 5px solid #c74350;
     display: none;
 }
 
 .down_arrow.up_arrow {
 	border-top: none;
-    border-bottom: 5px solid #c41200;
+    border-bottom: 5px solid #c74350;
 }
 
 @media (max-width: 800px) {
